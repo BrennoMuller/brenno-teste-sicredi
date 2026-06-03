@@ -32,9 +32,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 caminho_log = BASE_DIR / "dados" / "exemplos"
 caminho_log.mkdir(parents=True, exist_ok=True)
 
+print(caminho_tratado)
 
 # variáveis vindas do YAML
-ARQUIVO_DADOS = caminho_tratado
+ARQUIVO_DADOS = f'{caminho_tratado}/dados_tratados.csv'
 PASTA_RELATORIOS = caminho_log
 LIMITE_ZSCORE =  1.96
 LIMITE_SPREAD = 1.50
@@ -74,7 +75,7 @@ def executar_analise(df):
 
     # 3. Matriz de Correlação (Se ativado no YAML)
     matriz_corr = None
-    if config["relatorio"]["incluir_matriz_correlacao"]:
+    if True:
         colunas_analise = ['Taxa_de_Inadimplência', 'Taxa_Selic', 'juro_real']
         colunas_presentes = [c for c in colunas_analise if c in df.columns]
         matriz_corr = df[colunas_presentes].corr(method='pearson')
