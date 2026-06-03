@@ -47,8 +47,7 @@ O painel foi desenhado adotando um layout focado em escaneabilidade, alto contra
 - **Filtro de ano:** podendo ver o avanço da metrica atraves de todos os anos ou somente de um periodo escolhido
 - **Filtro de risco:** traz 3 segmentos de dados que classifiquei com critico, desvio, normal, esse filtro é baseado no zscore da inadimplencia
 - **Slicer da taxa selic:** para poder visualizar e segmentar periodos em que a taxa selic estava em um valor determinado pelo usuario
-
-- **Link para acesso ao Dashboard: ** https://app.powerbi.com/links/P-QkLwex1D?ctid=97d4d0bc-d3bd-40c1-b259-11f70211c133&pbi_source=linkShare    caso não for possivel acessar o arquivo fonte esta na pasta dashboard
+- **Link para acesso ao Dashboard:** https://app.powerbi.com/links/P-QkLwex1D?ctid=97d4d0bc-d3bd-40c1-b259-11f70211c133&pbi_source=linkShare    caso não for possivel acessar o arquivo fonte esta em dashboards/arquivo_fonte e as imagens do dashboard está em dashboards/exports
 ---
 
 ## 4. Duvidas
@@ -57,9 +56,16 @@ O painel foi desenhado adotando um layout focado em escaneabilidade, alto contra
 
 ---
 
+## 4. Projetos Futuros
+
+- Com mais tempo, implementaria mais analises na automação proposta e faria um painel What-if com slicer para identificar o quanto a Selic impactaria na inadimplencia nos proximos anos.
+
+---
+
+
 ## 5. Como Executar o Projeto
 
 1. Instale as dependências necessárias:
    ```bash
-   pip install pandas matplotlib seaborn pyyaml requests
+   pip install pandas matplotlib seaborn pyyaml requests Path
    ```
