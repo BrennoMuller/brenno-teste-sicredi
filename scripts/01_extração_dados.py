@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+from pathlib import Path
 
 # Define os parâmetros de busca
 
@@ -31,19 +32,11 @@ def get_data_from_bcb():
 
     for codigo in codigos_sgs:
 
-        url = f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados"
-
-        params = {
-            "formato": "json",
-            "dataInicial": data_inicial,
-            "dataFinal": data_final
-        }
-
+        url = f"https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados?formato=json&dataInicial={data_inicial}&dataFinal={data_final}"
 
         try:
 
-            response = requests.get(url, params=params, timeout=50)
-
+            response = requests.get(url)
 
             if response.status_code == 200:
 
@@ -54,8 +47,15 @@ def get_data_from_bcb():
 
                 df['codigo'] = codigo_str
 
+                BASE_DIR = Path(__file__).resolve().parent.parent
+                caminho = BASE_DIR / "dados" / "brutos"
+
+                caminho.mkdir(parents=True, exist_ok=True)
                 df = df.rename(columns={'valor': codigo_str})
-                caminho_salvar = rf"../dados/brutos/{codigo_str}.csv"
+
+
+                caminho_salvar = rf"{caminho}/{codigo_str}.csv"
+
                 df.to_csv(caminho_salvar, sep=',', index=False)
 
             else:
@@ -86,7 +86,14 @@ def get_data_from_IBGE():
         df_desemprego['Taxa_Desemprego'].str.replace(',', '.'),
         errors='coerce'
     )
-    caminho_salvar = rf"../dados/brutos/tx_desemprego.csv"
+
+
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    caminho = BASE_DIR / "dados" / "brutos"
+
+    caminho.mkdir(parents=True, exist_ok=True)
+
+    caminho_salvar = rf"{caminho}/tx_desemprego.csv"
     df_desemprego.to_csv(caminho_salvar, sep=',', index=False)
 
 

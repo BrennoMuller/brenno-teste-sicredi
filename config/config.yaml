@@ -4,10 +4,10 @@
 
 caminhos:
   pasta_entrada: ""
-  pasta_processados: "../dados/tratados"
+  pasta_processados: "tratados"
   arquivo_dados: "dados_tratados.csv"
   pasta_relatorios: ""
-  arquivo_log: "../dados/exemplos/pipeline_execucao.log"
+  arquivo_log: "pipeline_execucao.log"
 
 parametros_analise:
   # Regras de Sensibilidade e Projeção What-If

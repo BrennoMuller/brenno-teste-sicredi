@@ -1,7 +1,12 @@
 import os
 import pandas as pd
+from pathlib import Path
 
-pasta_brutos = r'../dados/brutos/'
+BASE_DIR = Path(__file__).resolve().parent.parent
+caminho = BASE_DIR / "dados" / "brutos"
+caminho.mkdir(parents=True, exist_ok=True)
+
+pasta_brutos = caminho
 
 paths = [
     os.path.abspath(os.path.join(pasta_brutos, arquivo))
@@ -103,4 +108,10 @@ df_final["inadimplência_zscore"] = (
 
 df_final = df_final.round(2)
 
-df_final.to_csv('./tratados/dados_tratados.csv', sep=',', index=False)
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+caminho = BASE_DIR / "dados" / "tratados"
+caminho.mkdir(parents=True, exist_ok=True)
+
+
+df_final.to_csv(f'{caminho}/dados_tratados.csv', sep=',', index=False)

@@ -3,25 +3,41 @@ import yaml  # Biblioteca PyYAML
 import pandas as pd
 import numpy as np
 from datetime import datetime
+from pathlib import Path
 
 
 # carregar arquivo de configuração YAML
-def carregar_configuracao(caminho_config="../config/config.yaml"):
-    if not os.path.exists(caminho_config):
-        raise FileNotFoundError(f"Arquivo de configuração não encontrado: {caminho_config}")
+# def carregar_configuracao(caminho_config="../config/config.yaml"):
+#     if not os.path.exists(caminho_config):
+#         raise FileNotFoundError(f"Arquivo de configuração não encontrado: {caminho_config}")
 
-    with open(caminho_config, "r", encoding="utf-8") as f:
-        # Loader seguro para evitar execução de código arbitrário no YAML
-        return yaml.load(f, Loader=yaml.SafeLoader)
+#     with open(caminho_config, "r", encoding="utf-8") as f:
+#         # Loader seguro para evitar execução de código arbitrário no YAML
+#         return yaml.load(f, Loader=yaml.SafeLoader)
 
 
-config = carregar_configuracao()
+# config = carregar_configuracao()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+caminho_tratado = BASE_DIR / "dados" / "tratados"
+caminho_tratado.mkdir(parents=True, exist_ok=True)
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+caminho = BASE_DIR / "dados" / "brutos"
+caminho.mkdir(parents=True, exist_ok=True)
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+caminho_log = BASE_DIR / "dados" / "exemplos"
+caminho_log.mkdir(parents=True, exist_ok=True)
+
 
 # variáveis vindas do YAML
-ARQUIVO_DADOS = config["caminhos"]["arquivo_dados"]
-PASTA_RELATORIOS = config["caminhos"]["pasta_relatorios"]
-LIMITE_ZSCORE = config["parametros_analise"]["limite_zscore"]
-LIMITE_SPREAD = config["parametros_analise"]["limite_spread_minimo"]
+ARQUIVO_DADOS = caminho_tratado
+PASTA_RELATORIOS = caminho_log
+LIMITE_ZSCORE =  1.96
+LIMITE_SPREAD = 1.50
 
 def carregar_dados():
     if not os.path.exists(ARQUIVO_DADOS):
