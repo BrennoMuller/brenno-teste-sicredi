@@ -1,0 +1,24 @@
+# =====================================================================
+# CONFIGURAÇÕES GERAIS DA AUTOMAÇÃO (INDICADORES ECONÔMICOS)
+# =====================================================================
+
+caminhos:
+  pasta_entrada: ""
+  pasta_processados: "../dados/tratados"
+  arquivo_dados: "dados_tratados.csv"
+  pasta_relatorios: ""
+  arquivo_log: "../dados/exemplos/pipeline_execucao.log"
+
+parametros_analise:
+  # Regras de Sensibilidade e Projeção What-If
+  sensibilidade_default: 0.12 # Elasticidade padrão entre Selic e Inadimplência
+  passo_aumento_selic: 0.0002 # Equivalente a 0.02% de aumento mensal no simulador
+
+  # Gatilhos de Alerta Estatístico
+  limite_zscore: 1.96 # Acima disso, o desvio da inadimplência vira anomalia
+  limite_spread_minimo: 1.50 # Alerta caso o Spread_Selic opere abaixo dessa margem
+
+relatorio:
+  idioma: "pt-BR"
+  incluir_matriz_correlacao: true
+  formato_data_log: "%Y-%m-%d %H:%M:%S"
